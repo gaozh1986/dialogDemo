@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project name="structured" default="cs">
+	<!--引入checkstyle的jar文件-->  
+	<property name="checkstyle.dir" value="D:/ci" />    
+	 <!-- 定义输出结果目录 -->    
+	<property name="result.dir" value="/" />
+	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="${checkstyle.dir}/checkstyle-6.11.2-all.jar"/>
+	<target name="cs">	   
+		<!-- 指定检查规范为GS_java_check.xml  fileset指的要检查的文件;formatter type指结果返回格式 -->    
+		<checkstyle failOnViolation="false"  failureProperty="checkstyle.failure" config="${checkstyle.dir}/google_chk_ruler.xml">    
+			<fileset dir="src" includes="**/*.java" />    
+			<formatter type="plain" />    
+			<formatter type="xml" toFile="${result.dir}/checkstyle_report.xml" />    
+		</checkstyle>    
+	</target> 
+</project>  
